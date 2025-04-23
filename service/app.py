@@ -6,16 +6,16 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 # ===== Настройка логирования в файл рядом со скриптом =====
-base_dir = os.path.abspath(os.path.dirname(__file__))  # Папка, где находится скрипт
-log_dir = os.path.join(base_dir, 'logs')               # Путь к директории logs
-os.makedirs(log_dir, exist_ok=True)                    # Создаём logs/ если её нет
+base_dir = os.path.abspath(os.path.dirname(__file__)) 
+log_dir = os.path.join(base_dir, 'logs')              
+os.makedirs(log_dir, exist_ok=True)
 
 log_path = os.path.join(log_dir, 'app.log')            # Путь к лог-файлу
 
 file_handler = RotatingFileHandler(log_path, maxBytes=10240, backupCount=5)
 file_handler.setLevel(logging.INFO)
 
-formatter = logging.Formatter('[%(asctime)s] %(levelname)s in %(module)s: %(message)s')
+formatter = logging.Formatter('[%(asctime)s] %(levelname)s in %(module)s: %(message)s') # Формат логов
 file_handler.setFormatter(formatter)
 
 app.logger.addHandler(file_handler)
