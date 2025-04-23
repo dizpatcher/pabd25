@@ -1,6 +1,8 @@
 ## Housing Price Prediction Model
 
-Лекции и инструкции на семинары доступны на [Я.диске](https://disk.yandex.ru/d/vDb3HPumZ2xK0w)  
+Лекции и тех задание на семинары доступны на [Я.диске](https://disk.yandex.ru/d/vDb3HPumZ2xK0w)  
+
+Ссылки на свои репо присылайте на ailabintsev@fa.ru  
 
 ### Описание проекта
 Проект направлен на создание модели машинного обучения для прогнозирования цен на жилье. Модель использует различные характеристики объектов недвижимости для предсказания их рыночной стоимости.
@@ -11,7 +13,6 @@ housing_price_prediction/
 ├── data/
 │   ├── raw/                # Исходные данные
 │   ├── processed/          # Обработанные данные
-│   └── sample_submission.csv
 ├── models/                 # Обученные модели
 ├── notebooks/             # Jupyter notebooks
 ├── src/                   # Исходный код
@@ -22,10 +23,8 @@ housing_price_prediction/
 └── README.md
 ```
 
-### Требования
-```bash
-pip install -r requirements.txt
-```
+### Архитектура сервиса ПА
+![](img/arch.png)
 
 ### Данные
 Используемые данные включают следующие характеристики:
