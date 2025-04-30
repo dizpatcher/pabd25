@@ -1,4 +1,5 @@
 import os
+import joblib
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, jsonify
@@ -22,10 +23,18 @@ app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 # ==========================================================
 
+model = joblib.load('./models/linear_regression_model.pkl')
+app.logger.info("Загружена ML-модель")
+
 @app.route('/')
 def index():
     app.logger.info("Открыта главная страница")
     return render_template('index.html')
+
+def make_price_prediction(inputs):
+    prediction = model.predict(inputs)
+    
+    return prediction
 
 @app.route('/api/numbers', methods=['POST'])
 def process_numbers():
@@ -72,7 +81,14 @@ def process_numbers():
                 return jsonify({'status': 'error', 'message': msg})
 
         app.logger.info(f"Данные успешно проверены: {numbers}")
-        return jsonify({'status': 'success', 'data': numbers})
+        
+        area = float(data.get('area'))
+        app.logger.info(f"Запуск предсказания для площади: {area} м²")
+
+        prediction = make_price_prediction([[area]])
+        app.logger.info(f"Предсказание сделано: {prediction}")
+        
+        return jsonify({'status': 'success', 'prediction': float(prediction[0])})
 
     except Exception as e:
         app.logger.exception("Ошибка сервера при обработке запроса")

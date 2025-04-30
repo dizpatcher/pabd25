@@ -3,3 +3,66 @@
 [2025-04-23 21:01:54,277] INFO in app: Открыта главная страница
 [2025-04-23 21:02:04,826] INFO in app: Получен JSON: {'number_of_rooms': '3', 'area': '50', 'flat_floor': '4', 'total_floors': '7'}
 [2025-04-23 21:02:04,826] INFO in app: Данные успешно проверены: [3.0, 50.0, 4.0, 7.0]
+[2025-04-23 21:06:48,090] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-23 21:06:48,206] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-23 21:06:53,321] INFO in app: Открыта главная страница
+[2025-04-23 21:07:03,357] INFO in app: Получен JSON: {'number_of_rooms': '2', 'area': '45', 'flat_floor': '5', 'total_floors': '10'}
+[2025-04-23 21:07:03,358] INFO in app: Данные успешно проверены: [2.0, 45.0, 5.0, 10.0]
+[2025-04-23 21:37:23,138] INFO in app: Получен JSON: {'number_of_rooms': '3', 'area': '50', 'flat_floor': '4', 'total_floors': '7'}
+[2025-04-23 21:37:23,139] INFO in app: Данные успешно проверены: [3.0, 50.0, 4.0, 7.0]
+[2025-04-23 21:37:31,621] INFO in app: Получен JSON: {'number_of_rooms': '3', 'area': '50', 'flat_floor': '10', 'total_floors': '7'}
+[2025-04-23 21:37:31,622] WARNING in app: Этаж квартиры не может быть больше общего количества этажей
+[2025-04-30 19:20:37,815] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 19:20:37,949] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:02:21,443] INFO in app: Загружена ML-модель
+[2025-04-30 21:02:21,444] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:02:22,318] INFO in app: Загружена ML-модель
+[2025-04-30 21:02:22,318] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:02:28,098] INFO in app: Открыта главная страница
+[2025-04-30 21:02:43,936] INFO in app: Получен JSON: {'number_of_rooms': '2', 'area': '43', 'flat_floor': '6', 'total_floors': '10'}
+[2025-04-30 21:02:43,936] INFO in app: Данные успешно проверены: [2.0, 43.0, 6.0, 10.0]
+[2025-04-30 21:02:43,939] ERROR in app: Ошибка сервера при обработке запроса
+Traceback (most recent call last):
+  File "/Users/vyrodov/DPrograms/FINANCIAL/pabd/pabd25/service/app.py", line 85, in process_numbers
+    prediction = make_price_prediction(float(data.get('area')))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vyrodov/DPrograms/FINANCIAL/pabd/pabd25/service/app.py", line 35, in make_price_prediction
+    prediction = model.predict(area)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/sklearn/linear_model/_base.py", line 297, in predict
+    return self._decision_function(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/sklearn/linear_model/_base.py", line 276, in _decision_function
+    X = validate_data(self, X, accept_sparse=["csr", "csc", "coo"], reset=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/sklearn/utils/validation.py", line 2944, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/sklearn/utils/validation.py", line 1070, in check_array
+    raise ValueError(
+ValueError: Expected 2D array, got scalar array instead:
+array=43.0.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+[2025-04-30 21:03:18,546] INFO in app: Загружена ML-модель
+[2025-04-30 21:03:18,546] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:03:19,352] INFO in app: Загружена ML-модель
+[2025-04-30 21:03:19,352] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:03:20,230] INFO in app: Открыта главная страница
+[2025-04-30 21:03:28,373] INFO in app: Получен JSON: {'number_of_rooms': '2', 'area': '40', 'flat_floor': '3', 'total_floors': '5'}
+[2025-04-30 21:03:28,373] INFO in app: Данные успешно проверены: [2.0, 40.0, 3.0, 5.0]
+[2025-04-30 21:05:17,570] INFO in app: Загружена ML-модель
+[2025-04-30 21:05:17,571] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:06:17,321] INFO in app: Загружена ML-модель
+[2025-04-30 21:06:17,321] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:06:23,219] INFO in app: Открыта главная страница
+[2025-04-30 21:06:36,904] INFO in app: Получен JSON: {'number_of_rooms': '1', 'area': '30', 'flat_floor': '4', 'total_floors': '6'}
+[2025-04-30 21:06:36,905] INFO in app: Данные успешно проверены: [1.0, 30.0, 4.0, 6.0]
+[2025-04-30 21:06:36,905] INFO in app: Запуск предсказания для площади: 30.0 м²
+[2025-04-30 21:06:36,908] INFO in app: Предсказание сделано: [4558278.03670169]
+[2025-04-30 21:09:35,278] INFO in app: Загружена ML-модель
+[2025-04-30 21:09:35,278] INFO in app: Запуск сервера на http://127.0.0.1:5000
+[2025-04-30 21:09:37,955] INFO in app: Открыта главная страница
+[2025-04-30 21:09:45,701] INFO in app: Получен JSON: {'number_of_rooms': '4', 'area': '50', 'flat_floor': '4', 'total_floors': '60'}
+[2025-04-30 21:09:45,701] INFO in app: Данные успешно проверены: [4.0, 50.0, 4.0, 60.0]
+[2025-04-30 21:09:45,702] INFO in app: Запуск предсказания для площади: 50.0 м²
+[2025-04-30 21:09:45,705] INFO in app: Предсказание сделано: [28726041.05977118]
