@@ -20,7 +20,7 @@ from helpers import drop_outliers
 logger = None
 
 
-def setup_logger(log_path="/logs/model.log"):
+def setup_logger(log_path="logs/model.log"):
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logger = logging.getLogger(__name__)
@@ -59,12 +59,12 @@ def parse_cian():
 
     df = pd.DataFrame(data)
 
-    csv_path = f"/data/raw/flats_{t}.csv"
+    csv_path = f"data/raw/flats_{t}.csv"
     df.to_csv(csv_path, encoding="utf-8", index=False)
 
 
 def process_data():
-    data_path = "/data/raw"
+    data_path = "data/raw"
     all_raw_data_files = os.listdir(data_path)
     # Фильтруем только те, которые соответствуют шаблону
     csv_files = [
@@ -140,7 +140,7 @@ def test_model(test_data, model):
 
 
 def save_model(model_name, model):
-    model_path = f"/models/{model_name}.pkl"
+    model_path = f"models/{model_name}.pkl"
 
     joblib.dump(model, model_path)
     logger.info(f"Модель сохранена в файл {model_path}")
@@ -162,7 +162,7 @@ def main():
     model_name = args.mname
     model_version = args.mversion
 
-    parse_cian()
+    # parse_cian()
     train_data, test_data = process_data()
 
     model = train_model(train_data)
