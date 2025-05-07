@@ -107,20 +107,32 @@ def process_data():
     train_data = df[~df["flat_id"].isin(test_items)]
     test_data = df[df["flat_id"].isin(test_items)]
 
-    return train_data, test_data
+    os.makedirs("artifacts/", exist_ok=True)
+    train_data.to_csv("artifacts/train.csv", index=False)
+    test_data.to_csv("artifacts/test.csv", index=False)
 
 
-def train_model(train_data):
+def train_model(model_name):
+
+    train_data = pd.read_csv("artifacts/train.csv")
+
     X_train = train_data[["total_meters"]]  # только один признак - площадь
     y_train = train_data["price"]
 
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-    return model
+    model_path = f"models/{model_name}.pkl"
+    joblib.dump(model, model_path)
+
+    logger.info(f"Модель сохранена в файл {model_path}")
 
 
-def test_model(test_data, model):
+def test_model(model_name):
+
+    test_data = pd.read_csv("artifacts/test.csv")
+    model = joblib.load(f"models/{model_name}.pkl")
+
     X_test = test_data[["total_meters"]]  # только один признак - площадь
     y_test = test_data["price"]
 
@@ -139,13 +151,6 @@ def test_model(test_data, model):
     )
 
 
-def save_model(model_name, model):
-    model_path = f"models/{model_name}.pkl"
-
-    joblib.dump(model, model_path)
-    logger.info(f"Модель сохранена в файл {model_path}")
-
-
 def main():
     global logger
     logger = setup_logger()
@@ -162,13 +167,12 @@ def main():
     model_name = args.mname
     model_version = args.mversion
 
+    model_name = f"{model_name}_model_{model_version}"
     # parse_cian()
-    train_data, test_data = process_data()
+    process_data()
 
-    model = train_model(train_data)
-    test_model(test_data, model)
-
-    save_model(f"{model_name}_model_{model_version}", model)
+    train_model(model_name)
+    test_model(model_name)
 
 
 if __name__ == "__main__":
