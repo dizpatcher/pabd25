@@ -10,6 +10,8 @@
 ### Структура проекта
 ```
 housing_price_prediction/
+├── artifacts/             # Промежуточные train и test для lifecycle
+├── img/                   # картинки)
 ├── data/
 │   ├── raw/               # Исходные данные
 │   ├── processed/         # Обработанные данные
