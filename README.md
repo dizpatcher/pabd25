@@ -11,15 +11,22 @@
 ```
 housing_price_prediction/
 ├── data/
-│   ├── raw/                # Исходные данные
-│   ├── processed/          # Обработанные данные
-├── models/                 # Обученные модели
+│   ├── raw/               # Исходные данные
+│   ├── processed/         # Обработанные данные
+├── models/                # Обученные модели
 ├── notebooks/             # Jupyter notebooks
-├── src/                   # Исходный код
-│   ├── data.py            # Обработка данных
-│   ├── models.py          # Модели машинного обучения
-│   └── utils.py           # Вспомогательные функции
+│   ├── eda.ipynb          # Анализ данных
+    ├── train.ipynb        # Обучение моделей
+├── src/                   # Логика
+│   ├── helpers.py         # Вспомогательные функции
+│   ├── lifecycle.py       # Жизненный цикл модели
+│   └── parse_cian.py      # 
 ├── requirements.txt       # Требования к зависимостям
+├── service                # Flask приложение
+│   ├── logs/              # логи сервиса
+│   ├── templates/         # html-шаблоны
+│   └── app.py             # Инстанс приложения
+├── .gitignore             # Flask приложение
 └── README.md
 ```
 
@@ -40,7 +47,7 @@ housing_price_prediction/
 ### Как запустить
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/housing_price_prediction.git
+git clone https://github.com/dizpatcher/pabd25.git
 ```
 
 2. Установите зависимости:
@@ -48,46 +55,22 @@ git clone https://github.com/yourusername/housing_price_prediction.git
 pip install -r requirements.txt
 ```
 
-3. Запустите Jupyter Notebook:
-```bash
-jupyter notebook
-```
 
 ### Модели машинного обучения
-* **Linear Regression** - базовая линейная регрессия
-* **Random Forest** - ансамбль деревьев решений
-* **Gradient Boosting** - градиентный бустинг
-* **XGBoost** - экстремальный градиентный бустинг
-* **Neural Networks** - нейронные сети
+В данной ветке:
+* **Linear Regression** - базовая линейная регрессия, обученная на 1 признаке - `total_meters` (8 итераций парсинга)
 
 ### Метрики оценки
-* **Mean Absolute Error (MAE)**
+
 * **Mean Squared Error (MSE)**
 * **Root Mean Squared Error (RMSE)**
 * **R² Score**
+* **Mean Absolute Error (MAE)**
 
 ### Результаты
 После обучения модели достигаются следующие результаты:
-* MAE: ~$2000
-* RMSE: ~$2500
-* R² Score: ~0.85
 
-### Как использовать модель
-1. Загрузите данные в формате CSV
-2. Обработайте данные с помощью предобработчиков
-3. Загрузите обученную модель
-4. Сделайте предсказания
-
-### Команда
-* **Data Scientist**: [Имя Фамилия]
-* **ML Engineer**: [Имя Фамилия]
-* **Product Manager**: [Имя Фамилия]
-
-### Лицензирование
-Этот проект распространяется под лицензией MIT. Смотрите файл LICENSE для деталей.
-
-### Контакты
-Для вопросов и предложений обращайтесь:
-* Email: your.email@example.com
-* GitHub: @yourusername
-* LinkedIn: linkedin.com/in/yourusername
+* Среднеквадратичная ошибка (MSE): 384836698057572.00
+* Корень из среднеквадратичной ошибки (RMSE): 19617255.11
+* Коэффициент детерминации R²: 0.628518
+* Средняя ошибка предсказания: 13049380.55 рублей
