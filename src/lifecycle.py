@@ -8,8 +8,7 @@ from logging.handlers import RotatingFileHandler
 import numpy as np
 import pandas as pd
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
 import cianparser
@@ -116,10 +115,12 @@ def train_model(model_name):
 
     train_data = pd.read_csv("artifacts/train.csv")
 
-    X_train = train_data[["total_meters"]]  # только один признак - площадь
+    X_train = train_data[
+        ["total_meters", "floor", "floors_count", "rooms_count"]
+    ]  # уже 4 признака)
     y_train = train_data["price"]
 
-    model = LinearRegression()
+    model = GradientBoostingRegressor()
     model.fit(X_train, y_train)
 
     model_path = f"models/{model_name}.pkl"
@@ -133,7 +134,9 @@ def test_model(model_name):
     test_data = pd.read_csv("artifacts/test.csv")
     model = joblib.load(f"models/{model_name}.pkl")
 
-    X_test = test_data[["total_meters"]]  # только один признак - площадь
+    X_test = test_data[
+        ["total_meters", "floor", "floors_count", "rooms_count"]
+    ]  # уже 4 признака)
     y_test = test_data["price"]
 
     y_pred = model.predict(X_test)
@@ -168,7 +171,7 @@ def main():
     model_version = args.mversion
 
     model_name = f"{model_name}_model_{model_version}"
-    # parse_cian()
+    parse_cian()
     process_data()
 
     train_model(model_name)

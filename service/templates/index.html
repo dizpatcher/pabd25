@@ -75,8 +75,19 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    const roundedPrediction = parseFloat(data.prediction).toFixed(2);
-                    document.getElementById('response').innerText = 'Предсказанное значение цены: ' + roundedPrediction + ' ₽';
+                    // const roundedPrediction = parseFloat(data.prediction).toFixed(2);
+                    // document.getElementById('response').innerText = 'Предсказанное значение цены: ' + roundedPrediction + ' ₽';
+                    // Получаем значение и преобразуем в число
+                    const predictionValue = parseFloat(data.prediction);
+                    // Округляем до миллионов
+                    const roundedInMillions = (predictionValue / 1000000).toFixed(2);
+                    // Форматируем вывод с разделением тысяч и добавляем "млн"
+                    const formattedOutput = new Intl.NumberFormat('ru-RU', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }).format(roundedInMillions);
+
+                    document.getElementById('response').innerText = 'Предсказанное значение цены: ' + formattedOutput + ' млн ₽';
                 } else {
                     document.getElementById('response').innerText = 'Ошибка: ' + data.message;
                 }
