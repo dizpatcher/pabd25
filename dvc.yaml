@@ -6,7 +6,7 @@ stages:
   #   outs:
   #     - data/raw/
   process_data:
-    cmd: .venv/bin/python src/process_data.py
+    cmd: python3 src/process_data.py
     deps:
       - src/process_data.py
       - data/raw/
@@ -14,14 +14,14 @@ stages:
       - data/processed/train.csv
       - data/processed/test.csv
   train_model:
-    cmd: .venv/bin/python src/train_model.py
+    cmd: python3 src/train_model.py
     deps:
       - src/train_model.py
       - data/processed/train.csv
     outs:
       - models/
   test_model:
-    cmd: .venv/bin/python src/test_model.py
+    cmd: python3 src/test_model.py
     deps:
       - src/test_model.py
       - data/processed/test.csv

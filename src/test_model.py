@@ -1,19 +1,22 @@
 import joblib
+
+import yaml
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
 from helpers import setup_logger
 
 logger = setup_logger()
+MODEL_NAME = "gradient_boosting"
 
 
 def test_model():
-    import yaml
 
     with open("params.yaml", "r") as fd:
         params = yaml.safe_load(fd)
 
     model = joblib.load(f"models/{params['model_name']}.pkl")
+    # model = joblib.load(f"models/{MODEL_NAME}.pkl")
     test_data = pd.read_csv("data/processed/test.csv")
 
     X_test = test_data[["total_meters", "floor", "floors_count", "rooms_count"]]

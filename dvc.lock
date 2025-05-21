@@ -14,7 +14,7 @@ stages:
       size: 1
       nfiles: 1
   process_data:
-    cmd: .venv/bin/python src/process_data.py
+    cmd: python3 src/process_data.py
     deps:
     - path: data/raw/
       hash: md5
@@ -34,3 +34,36 @@ stages:
       hash: md5
       md5: 3ced2e85cd7886dcf4cccdcb7df14d91
       size: 80696
+  train_model:
+    cmd: python3 src/train_model.py
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3ced2e85cd7886dcf4cccdcb7df14d91
+      size: 80696
+    - path: src/train_model.py
+      hash: md5
+      md5: 5917180cfc296a6f04b1e7888c3b1bcc
+      size: 851
+    outs:
+    - path: models/
+      hash: md5
+      md5: d252e18dd9e7bb26765709278e71a7f4.dir
+      size: 186076
+      nfiles: 1
+  test_model:
+    cmd: python3 src/test_model.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 8a77c6042ab4a0743df2ea5f9ed6095d
+      size: 20289
+    - path: models/
+      hash: md5
+      md5: d252e18dd9e7bb26765709278e71a7f4.dir
+      size: 186076
+      nfiles: 1
+    - path: src/test_model.py
+      hash: md5
+      md5: 05c05babdf33ea04daf07083e3071663
+      size: 929
