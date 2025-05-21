@@ -1,0 +1,36 @@
+schema: '2.0'
+stages:
+  parse_cian:
+    cmd: .venv/bin/python src/parse_cian.py
+    deps:
+    - path: src/parse_cian.py
+      hash: md5
+      md5: 960d6d9a46a34d27b5010a45d7032cd0
+      size: 951
+    outs:
+    - path: data/raw/
+      hash: md5
+      md5: d1f99234b3d5530ef0deb5cd8a87f680.dir
+      size: 1
+      nfiles: 1
+  process_data:
+    cmd: .venv/bin/python src/process_data.py
+    deps:
+    - path: data/raw/
+      hash: md5
+      md5: 5e4af0458eb1baf40961a5965e91d870.dir
+      size: 279487
+      nfiles: 4
+    - path: src/process_data.py
+      hash: md5
+      md5: f3071a1862e5f8f0df20138a105fa31a
+      size: 1682
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 8a77c6042ab4a0743df2ea5f9ed6095d
+      size: 20289
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3ced2e85cd7886dcf4cccdcb7df14d91
+      size: 80696
